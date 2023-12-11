@@ -39,11 +39,3 @@ func reverseStr(s []byte) string {
 
 	return string(s)
 }
-
-// eat
-// tea
-// ate
-
-// aet
-// aet
-// aet
