@@ -28,6 +28,35 @@ func (l *LinkedList) InsertEnd(data int) {
 	}
 }
 
+func (l *LinkedList) InsertAtBeginning(data int) {
+	node := &Node{Data: data}
+
+	if l.Head != nil {
+		node.Next = l.Head
+	}
+
+	l.Head = node
+}
+
+func (l *LinkedList) InsertNodeAtTheSpecifiedLocation(data int, position int) {
+	node := &Node{Data: data}
+
+	if position == 1 {
+		node.Next = l.Head
+		l.Head = node
+	} else {
+		current := l.Head
+
+		// i = 1, position-1 = 2
+		for i := 1; i < position-1 && current.Next != nil; i++ {
+			current = current.Next
+		}
+
+		node.Next = current.Next
+		current.Next = node
+	}
+}
+
 func (l *LinkedList) Display() {
 	current := l.Head
 
@@ -45,6 +74,8 @@ func main() {
 	list.InsertEnd(1)
 	list.InsertEnd(2)
 	list.InsertEnd(3)
+	list.InsertAtBeginning(5)
+	list.InsertNodeAtTheSpecifiedLocation(9, 3)
 	list.Display()
 
 }
