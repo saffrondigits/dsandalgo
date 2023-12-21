@@ -47,7 +47,7 @@ func (l *LinkedList) InsertNodeAtTheSpecifiedLocation(data int, position int) {
 	} else {
 		current := l.Head
 
-		// i = 1, position-1 = 2
+		// i = 2, position-1 = 2
 		for i := 1; i < position-1 && current.Next != nil; i++ {
 			current = current.Next
 		}
@@ -68,6 +68,52 @@ func (l *LinkedList) Display() {
 	fmt.Println()
 }
 
+func (l *LinkedList) DeleteFirstNode() {
+	if l.Head != nil {
+		l.Head = l.Head.Next
+	}
+}
+
+func (l *LinkedList) DeleteLastNode() {
+	if l.Head != nil {
+		if l.Head.Next == nil {
+			l.Head = nil
+		} else {
+			current := l.Head
+			for current.Next.Next != nil {
+				current = current.Next
+			}
+
+			current.Next = nil
+		}
+	}
+}
+
+func (l *LinkedList) DeleteFromSpecifiedLocation(location int) {
+	if l.Head == nil {
+		return
+	}
+
+	temp := l.Head
+
+	if location == 1 {
+		l.Head = temp.Next
+		return
+	}
+
+	for i := 1; temp != nil && i < location-1; i++ {
+		temp = temp.Next
+	}
+
+	if temp == nil || temp.Next == nil {
+		return
+	}
+
+	next := temp.Next.Next
+
+	temp.Next = next
+}
+
 func main() {
 	list := &LinkedList{}
 
@@ -76,6 +122,8 @@ func main() {
 	list.InsertEnd(3)
 	list.InsertAtBeginning(5)
 	list.InsertNodeAtTheSpecifiedLocation(9, 3)
+	list.DeleteFirstNode()
+	list.DeleteFromSpecifiedLocation(3)
 	list.Display()
 
 }
