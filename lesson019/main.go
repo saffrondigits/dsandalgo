@@ -175,3 +175,9 @@ func main() {
 	// list.Display()
 
 }
+
+func MinWindowSubstring(strArr []string) string {
+
+	// Code goes here
+	return strArr[0]
+}
